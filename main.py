@@ -1,4 +1,4 @@
-from search import WebScraping
+from search import WebScrapingFalabella, WebScrapingSodimac
 from create_dataset import create_dataset
 
 url_falabella = 'https://www.falabella.com.pe/falabella-pe/search?Ntt='
@@ -9,10 +9,18 @@ url_tottus = 'https://tottus.falabella.com.pe/tottus-pe/search?Ntt=honor+x8'
 query = input('Input the search: ')
 query = query.strip().replace(' ', '+')
 
-url = url_falabella + query
+url_falabella += query
+url_sodimac += query
 
-product_name, product_prices, product_type, product_business, columns = WebScraping(url)
+falabella_data = WebScrapingFalabella(url_falabella)
+sodimac_data = WebScrapingSodimac(url_sodimac)
 
-df = create_dataset(columns, (product_name, product_prices, product_type, product_business))
-df.to_excel('data.xlsx', index=False)
-print(df)
+
+df_falabella = create_dataset(falabella_data[-1], falabella_data[:-1])
+df_sodimac = create_dataset(sodimac_data[-1], sodimac_data[:-1])
+
+df_falabella.to_excel('data_falabella.xlsx', index=False)
+df_sodimac.to_excel('data_sodimac.xlsx', index=False)
+
+print(df_falabella)
+print(df_sodimac)
