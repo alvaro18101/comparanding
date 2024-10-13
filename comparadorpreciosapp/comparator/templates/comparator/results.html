@@ -1,0 +1,12 @@
+<h1>Comparador de precios</h1>
+<p>Contenido de la búsqueda: {{query_text}}</p>
+
+{% for shop in data %}
+    <h2>{{shop.0}}</h2>
+    {% for item in shop.1 %}
+        <p>{{item}}</p>
+    {% endfor %}
+    <br>
+{% endfor %}
+
+<a href="{% url "comparator:index" %}">Buscar otro producto</a>
