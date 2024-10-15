@@ -1,12 +1,30 @@
-<h1>Comparador de precios</h1>
+{% load static %}
 
-<form action="{% url "comparator:search" %}" method="POST">
-    {% csrf_token %}
-    <label for="query_to_search">Ingrese su búsqueda:</label>
-    <br>
-    <input
-        id="query_to_search"
-        type="text"
-        name="query_to_search">
-    <input type="submit" value="Buscar">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparador de precios</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}">
+</head>
+<body>
+    <form action="{% url "comparator:search" %}" method="POST">
+        {% csrf_token %}
+        <label for="query_to_search"><h1>Comparador de precios</h1></label>
+        <div class="search_bar">
+            <input
+                id="query_to_search"
+                class="to_search"
+                type="text"
+                name="query_to_search"
+                placeholder="Ingresa tu búsqueda">
+            {% comment %} <input id="button_search" type="submit" value="Buscar"> {% endcomment %}
+            <button id="button_search"class="to_search" type="submit">
+                <img src="{% static "images/icon_Search.ico" %}" width="25px" alt="Buscar">
+            </button>
+        </div>
+    </form>
+</body>
+</html>
+
