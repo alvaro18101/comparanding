@@ -5,35 +5,32 @@ from django.views import generic
 
 from .models import Query
 
-from my_packages.main import DoWebScraping
+# from my_packages.main import DoWebScraping
+from my_packages.WebScraping import WebScraping
 
 def index(request):
     return render(request, 'comparator/index.html')
 
 def results(request):
     query_text = Query.objects.all().last()
-    data = DoWebScraping(query_text)
-    data_falabella = data[0]
-    data_sodimac = data[1]
-    data_linio = data[2]
-    data_tottus = data[3]
+    products_name, prices, products_brand, products_dealer, products_image = WebScraping(query_text)
+    products_name = list(products_name)
+    prices = list(prices)
+    products_brand = list(products_brand)
+    products_dealer = list(products_dealer)
+    products_image = list(products_image)
+    data = list(zip(products_name, prices, products_brand, products_dealer, products_image))
 
     return render(request, 'comparator/results.html', {
         'query_text': query_text,
-        'data': data,
-        'data_falabella': data_falabella,
-        'data_sodimac': data_sodimac,
-        'data_linio': data_linio,
-        'data_tottus': data_tottus
+        'data': data
     })
-    # return HttpResponse(f'Estas viendo la respuesta de {query_text}')
 
 def search(request):
     query_name = request.POST['query_to_search']
     query = Query.objects.create(query_text=query_name)
     return HttpResponseRedirect(reverse('comparator:results'))
     # return redirect('results')
-
 
 
 
