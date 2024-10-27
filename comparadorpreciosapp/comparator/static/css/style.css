@@ -27,6 +27,7 @@ form {
 .search_bar {
     margin: auto;
     width: 40%;
+    min-width: 450px;
     display: flex;
     position: relative;
 }
@@ -69,8 +70,8 @@ form {
 }
 
 
-@media screen and (max-width:900px) {
+@media (min-width:800px) {
     .search_bar {
-        width: 80%;
+        width: 70%;
     }
 }
