@@ -6,14 +6,14 @@ from django.views import generic
 from .models import Query
 
 # from my_packages.main import DoWebScraping
-from my_packages.WebScraping import WebScraping
+from my_packages.WebScraping import WebScrapingLinio
 
 def index(request):
     return render(request, 'comparator/index.html')
 
 def results(request):
     query_text = Query.objects.all().last()
-    products_name, prices, products_brand, products_dealer, products_image = WebScraping(query_text)
+    products_name, prices, products_brand, products_dealer, products_image = WebScrapingLinio(query_text)
     products_name = list(products_name)
     prices = list(prices)
     products_brand = list(products_brand)
@@ -23,7 +23,8 @@ def results(request):
 
     return render(request, 'comparator/results.html', {
         'query_text': query_text,
-        'data': data
+        'data': data,
+        'products_name': products_name
     })
 
 def search(request):

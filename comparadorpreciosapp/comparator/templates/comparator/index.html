@@ -5,13 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparador de precios</title>
+    <title>Comparanding</title>
     <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}">
 </head>
 <body>
+    <label for="query_to_search"><h1>Buscar un producto</h1></label>
     <form action="{% url "comparator:search" %}" method="POST">
         {% csrf_token %}
-        <label for="query_to_search"><h1>Comparador de precios</h1></label>
         <div class="search_bar">
             <input
                 id="query_to_search"

@@ -9,19 +9,23 @@
     <link rel="stylesheet" type="text/css" href="{% static "css/results_css.css" %}">
 </head>
 <body>
-    <h1>Comparador de precios</h1>
-    <a href="{% url "comparator:index" %}">Buscar otro producto</a>
-    <p>Contenido de la búsqueda: {{query_text}}</p>
+    <h1>Productos encontrados</h1>
+    <div class="extra">
+        <p>Contenido de la búsqueda: {{query_text}}</p>
+        <a href="{% url "comparator:index" %}">Buscar otro producto</a>
+    </div>
 
+    <div class="website">
+        <h2>Linio</h2>
+        <a href="https://google.com" target="_blank">Ir a la página</a>
+    </div>
 
-    <h2>Linio</h2>
-    <a href="https://google.com" target="_blank">Ir a la página</a>
     <div class="items">
         {% for product_name, prices, product_brand, product_dealer, product_image in data %}
             <div class="item">
                 <img src="{% static 'images/'|add:product_image %}" alt="{{product_name}}" width="200px" height="auto" class="product_image">
                 <p class="product_brand">{{product_brand}}</p>
-                <b>{{product_name}}</b>
+                <p class="product_name">{{product_name}}</p>
                 {% for price in prices %}
                     <p class="price">{{price}}</p>
                 {% endfor %}
