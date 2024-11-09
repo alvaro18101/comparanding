@@ -79,4 +79,4 @@ def WebScrapingLinio(query):
         images_name.append(image_name)
         j += 1
 
-    return products_name, prices, products_brand, products_dealer, images_name
+    return products_name, prices, products_brand, products_dealer, images_name, url

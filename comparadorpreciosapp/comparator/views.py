@@ -13,7 +13,7 @@ def index(request):
 
 def results(request):
     query_text = Query.objects.all().last()
-    products_name, prices, products_brand, products_dealer, products_image = WebScrapingLinio(query_text)
+    products_name, prices, products_brand, products_dealer, products_image, url_linio = WebScrapingLinio(query_text)
     products_name = list(products_name)
     prices = list(prices)
     products_brand = list(products_brand)
@@ -23,8 +23,9 @@ def results(request):
 
     return render(request, 'comparator/results.html', {
         'query_text': query_text,
-        'data': data,
-        'products_name': products_name
+        'data_linio': data,
+        'products_name': products_name,
+        'url_linio': url_linio
     })
 
 def search(request):
