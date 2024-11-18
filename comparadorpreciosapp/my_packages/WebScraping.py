@@ -10,12 +10,12 @@ import os
 
 getPrices = lambda raw_price: list(map(lambda i: i.strip(), raw_price.split('S/')[1:]))
 
-# url = 'https://linio.falabella.com.pe/linio-pe/search?Ntt=Messi'
 def WebScrapingLinio(query):
     query = str(query)
     query = query.strip().replace(' ', '+')
     url = 'https://linio.falabella.com.pe/linio-pe/search?Ntt='
     url += query
+
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
     }

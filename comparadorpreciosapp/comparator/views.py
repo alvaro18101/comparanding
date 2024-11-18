@@ -13,18 +13,25 @@ def index(request):
 
 def results(request):
     query_text = Query.objects.all().last()
-    products_name, prices, products_brand, products_dealer, products_image, url_linio = WebScrapingLinio(query_text)
-    products_name = list(products_name)
-    prices = list(prices)
-    products_brand = list(products_brand)
-    products_dealer = list(products_dealer)
-    products_image = list(products_image)
-    data = list(zip(products_name, prices, products_brand, products_dealer, products_image))
+    products_name_linio, prices_linio, products_brand_linio, products_dealer_linio, products_image_linio, url_linio = WebScrapingLinio(query_text)
+    products_name_linio = list(products_name_linio)
+    prices_linio = list(prices_linio)
+    products_brand_linio = list(products_brand_linio)
+    products_dealer_linio = list(products_dealer_linio)
+    products_image_linio = list(products_image_linio)
+    data_linio = list(zip(products_name_linio, prices_linio, products_brand_linio, products_dealer_linio, products_image_linio))
+
+    products_name_linio, prices_linio, products_brand_linio, products_dealer_linio, products_image_linio, url_linio = WebScrapingLinio(query_text)
+    products_name_linio = list(products_name_linio)
+    prices_linio = list(prices_linio)
+    products_brand_linio = list(products_brand_linio)
+    products_dealer_linio = list(products_dealer_linio)
+    products_image_linio = list(products_image_linio)
+    data_linio = list(zip(products_name_linio, prices_linio, products_brand_linio, products_dealer_linio, products_image_linio))
 
     return render(request, 'comparator/results.html', {
         'query_text': query_text,
-        'data_linio': data,
-        'products_name': products_name,
+        'data_linio': data_linio,
         'url_linio': url_linio
     })
 

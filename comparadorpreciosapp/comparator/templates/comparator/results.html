@@ -15,24 +15,26 @@
         <a href="{% url "comparator:index" %}">Buscar otro producto</a>
     </div>
 
-    <div class="website">
-        <h2>Linio</h2>
-        <a href="https://google.com" target="_blank">Ir a la página</a>
+    <div class="online-store">
+        <div class="website">
+            <h2>Linio</h2>
+            <a href="{{url_linio}}" target="_blank">Ir a la página</a>
+        </div>
+        <div class="items">
+            {% for product_name, prices, product_brand, product_dealer, product_image in data_linio %}
+                <div class="item">
+                    <img src="{% static 'images/'|add:product_image %}" alt="{{product_name}}" width="200px" height="auto" class="product_image">
+                    <p class="product_brand">{{product_brand}}</p>
+                    <p class="product_name">{{product_name}}</p>
+                    {% for price in prices %}
+                        <p class="price">{{price}}</p>
+                    {% endfor %}
+                    <p class="product_dealer">{{product_dealer}}</p>
+                </div>
+                <br>
+            {% endfor %}
+        </div>
     </div>
 
-    <div class="items">
-        {% for product_name, prices, product_brand, product_dealer, product_image in data %}
-            <div class="item">
-                <img src="{% static 'images/'|add:product_image %}" alt="{{product_name}}" width="200px" height="auto" class="product_image">
-                <p class="product_brand">{{product_brand}}</p>
-                <p class="product_name">{{product_name}}</p>
-                {% for price in prices %}
-                    <p class="price">{{price}}</p>
-                {% endfor %}
-                <p class="product_dealer">{{product_dealer}}</p>
-            </div>
-            <br>
-        {% endfor %}
-    </div>
 </body>
 </html>
